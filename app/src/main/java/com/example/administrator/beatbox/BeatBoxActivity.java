@@ -7,6 +7,7 @@ import android.os.Bundle;
 public class BeatBoxActivity extends SingleFragmentacActivity {
 
 
+    //创建需要添加进Activity中的Fragment
     @Override
     protected Fragment createFragment() {
         return BeatBoxFragment.newInstance();

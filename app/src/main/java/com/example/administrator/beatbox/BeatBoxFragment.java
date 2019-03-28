@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import com.example.administrator.beatbox.databinding.FragmentBeatBoxBinding;
 import com.example.administrator.beatbox.databinding.ListItemSoundBinding;
 
+import java.util.List;
+
 public class BeatBoxFragment extends Fragment {
 
     private BeatBox mBeatBox;
@@ -40,9 +42,9 @@ public class BeatBoxFragment extends Fragment {
          * 但是
          * 这里的BeatBox应用中使用了数据绑定的“高级”方式来实例化RecycleView对象
          */
-        FragmentBeatBoxBinding binding =   DataBindingUtil.inflate(inflater,R.layout.fragment_beat_box, container,false);
+        FragmentBeatBoxBinding binding =  DataBindingUtil.inflate(inflater,R.layout.fragment_beat_box, container,false);
         binding.recycleView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        binding.recycleView.setAdapter(new SoundAdapter());
+        binding.recycleView.setAdapter(new SoundAdapter(mBeatBox.getSounds()));
 
         /**
          * getRoot()返回全部的FragmentBeatBoxBinding对象中绑定的Root View ,即全部的视图组件容器
@@ -58,13 +60,36 @@ public class BeatBoxFragment extends Fragment {
             /**
              * 把视图实例化的工作全部交给bingding对象
              */
-            super(binding.getRoot());
+            super(binding.getRoot());//View给父类构造器
             mBinding = binding;
+
+            /**
+             * 使用bingding 为视图层（V） 配置 ViewModel 对象（V_M）！
+             * ###视图与模型数据通过ViewModel进行沟通和对话###
+             */
+            mBinding.setViewModel(new SoundViewModel(mBeatBox));
         }
+
+        public void bind(Sound sound) {
+            //使用ViewModel 来更新模型数据
+            /**
+             * 运用V_M 为视图层（V）设置模型数据（M）
+             */
+            mBinding.getViewModel().setSound(sound);
+            mBinding.executePendingBindings();
+        }
+
     }
 
 
     private class SoundAdapter extends RecyclerView.Adapter<SoundHolder>{
+
+
+        //$$$$需要模型层数据来构造Adapter
+        List<Sound> mSounds;
+        public SoundAdapter(List<Sound> sounds) {
+            mSounds = sounds;
+        }
 
         @NonNull
         @Override
@@ -77,14 +102,16 @@ public class BeatBoxFragment extends Fragment {
             return new SoundHolder(soundBinding);
         }
 
+        //将模型层数据绑定到Holder
         @Override
-        public void onBindViewHolder(@NonNull SoundHolder soundHolder, int i) {
-
+        public void onBindViewHolder(@NonNull SoundHolder soundHolder, int position) {
+            Sound sound = mSounds.get(position);
+            soundHolder.bind(sound);
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mSounds.size();
         }
     }
 
