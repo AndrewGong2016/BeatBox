@@ -8,7 +8,9 @@ import java.io.IOException;
 
 public class BeatBox {
     private static final String TAG = "BeatBoxGuan";
-    private static final String SOUNDS_FOLDER = "assets/sample_sounds";
+
+    //sounds 资源路径配置
+    private static final String SOUNDS_FOLDER = "sample_sounds";
 
     private AssetManager mAssets;
 
@@ -21,6 +23,7 @@ public class BeatBox {
     private void loadSounds() {
         String[] soundNames;
         try {
+            //使用AssetManager加载sounds文件
             soundNames = mAssets.list(SOUNDS_FOLDER);
             Log.i(TAG, "Found " + soundNames.length + " sounds");
         } catch (IOException ioe) {

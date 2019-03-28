@@ -35,7 +35,7 @@ public class BeatBoxFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         /**
-         * 1 前一个Criminal应用使用[inflater]来加载指定layout xml中的所有视图组件
+         * 1 前一个Criminal应用使用[inflater]来加载指定 layout xml 中的所有视图组件
          * 2 然后使用view的find id 接口方法来找到RecyclerView
          * 但是
          * 这里的BeatBox应用中使用了数据绑定的“高级”方式来实例化RecycleView对象
