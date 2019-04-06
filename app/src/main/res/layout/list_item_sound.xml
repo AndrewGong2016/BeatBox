@@ -1,14 +1,22 @@
+<!--使用数据绑定的布局-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--绑定ViewModel类到此视图中来-->
+    <!--通过binding 类的getViewModel方法将获得在此处配置Model type-->
     <data>
         <variable
             name="viewModel"
             type="com.example.administrator.beatbox.SoundViewModel"/>
     </data>
+
+
+    <!--使用绑定表达式: "@{}" -->
+    <!--viewModel.title 等价于 viewModel.getTitle()-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:text="@{viewModel.title}"
         tools:text="Sound name"/>
+
 </layout>

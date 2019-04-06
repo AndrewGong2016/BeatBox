@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--使用数据绑定的布局文件，具体做法：把布局放入到layout标签内，【不同可对比普通布局的元素位置】-->
+<!--数据绑定类将依据此文件名进行命名：在这里为：FragmentBeatBoxBinding 类-->
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.v7.widget.RecyclerView
