@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!--绑定ViewModel类到此视图中来-->
-    <!--通过binding 类的getViewModel方法将获得在此处配置Model type-->
+    <!--这是ViewModel 视图及Model 的申明语法-->
+    <!--通过binding 类的getViewModel方法将获得在此处配置Model type，该type指定到一个类，该即为ViewModel-->
     <data>
         <variable
             name="viewModel"
@@ -16,7 +17,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:text="@{viewModel.title}"
+        android:text="@{`File:`+viewModel.title}"
         tools:text="Sound name"/>
 
 </layout>

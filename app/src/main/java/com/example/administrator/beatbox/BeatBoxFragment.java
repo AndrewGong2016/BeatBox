@@ -76,6 +76,16 @@ public class BeatBoxFragment extends Fragment {
              */
             mBinding.setViewModel(new SoundViewModel(mBeatBox));
 
+
+            /**
+             * 对比之前的CrimeHolder中代码：
+             * 使用继承自ViewHolder的itemView（itemView 与bingding.getRoot 一致，指向布局的根。）；
+             * 然后使用新增的bind()接口进行视图的更新。
+             */
+            /*
+            itemView.findViewById(R.id.xxx);
+            */
+
         }
 
         public void bind(Sound sound) {
@@ -83,6 +93,10 @@ public class BeatBoxFragment extends Fragment {
             /**
              * 运用V_M 为视图层（V）设置模型数据（M）
              * 此时，ViewModel进行了更新，【但是】【但是】【布局xml并不知情】
+             *
+             * 【注意】：在之前的crime应用中，是直接使用视图对象进行更新视图的：
+             * TextView title_date=(TextView)itemView.findViewById(R.id.xxx);
+             * title_date.setText(crime.getDate().toString());
              */
             mBinding.getViewModel().setSound(sound);
             mBinding.executePendingBindings();
@@ -109,8 +123,10 @@ public class BeatBoxFragment extends Fragment {
              */
             ListItemSoundBinding soundBinding = DataBindingUtil.inflate(inflater,R.layout.list_item_sound,viewGroup,false);
 
+
             SoundHolder soundHolder = new SoundHolder(soundBinding);
             Log.d(TAG, "onCreateViewHolder: "+soundHolder.toString());
+
             return soundHolder;
         }
 

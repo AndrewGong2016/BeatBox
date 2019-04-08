@@ -36,10 +36,9 @@ public abstract class SingleFragmentacActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: ");
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);//FrameLayout 作为一个fragment container
-        if(fragment==null){
-            Log.d(TAG, "onCreate: and fragment is NULL");
-        }
         if(fragment == null){
+            Log.d(TAG, "onCreate: and fragment is NULL，create a Fragment by " +
+                    "calling createFragment method");
             fragment = createFragment();//子类中需实现这个方法
             fm.beginTransaction()
                     .add(R.id.fragment_container,fragment)

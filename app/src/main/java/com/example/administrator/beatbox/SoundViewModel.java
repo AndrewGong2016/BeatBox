@@ -5,6 +5,8 @@ import android.databinding.Bindable;
 
 /**
  * 继承Observable ，该类对象将可被观察，一旦数据发生改变，需要通知其注册的所有观察者
+ * Q：为什么这个soundViewmodel 对象可以是一个viewmodel呢？
+ * A：见xml 布局文件中的申明
  */
 public class SoundViewModel extends BaseObservable {
 
