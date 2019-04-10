@@ -1,7 +1,10 @@
 package com.example.administrator.beatbox;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 
 import java.io.IOException;
@@ -13,13 +16,25 @@ public class BeatBox {
 
     //sounds 资源路径配置
     private static final String SOUNDS_FOLDER = "sample_sounds";
-
+    private static final int MAX_SOUNDS = 5;
+    private SoundPool mSoundPool;
     private AssetManager mAssets;
     private List<Sound> mSounds = new ArrayList<>();
 
     public BeatBox(Context context) {
         mAssets = context.getAssets();
+
+        // This old constructor is deprecated, but we need it for compatibility.
+        mSoundPool = new SoundPool(MAX_SOUNDS, AudioManager.STREAM_MUSIC, 0);
         loadSounds();
+    }
+
+    public void play(Sound sound) {
+        Integer soundId = sound.getSoundId();
+        if (soundId == null) {
+            return;
+        }
+        mSoundPool.play(soundId, 1.0f, 1.0f, 1, 0, 1.0f);
     }
 
     private void loadSounds() {
@@ -38,8 +53,20 @@ public class BeatBox {
         for (String filename : soundNames) {
             String assetPath = SOUNDS_FOLDER + "/" + filename;
             Sound sound = new Sound(assetPath);
-            mSounds.add(sound);
+            try {
+                load(sound);
+                mSounds.add(sound);
+            } catch (IOException e) {
+                Log.e(TAG, "Could not load sound " + filename, e);
+            }
+
         }
+    }
+
+    private void load(Sound sound) throws IOException {
+        AssetFileDescriptor afd=mAssets.openFd(sound.getAssetPath());
+        int soundId = mSoundPool.load(afd,1);
+        sound.setSoundId(soundId);
     }
 
     public List<Sound> getSounds() {
