@@ -24,7 +24,9 @@ public class BeatBoxFragment extends Fragment {
     private BeatBox mBeatBox;
 
     public static BeatBoxFragment newInstance(){
-        return new BeatBoxFragment();
+        BeatBoxFragment fragment = new BeatBoxFragment();
+        fragment.setRetainInstance(true);
+        return  fragment;
     }
 
 
@@ -33,6 +35,17 @@ public class BeatBoxFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mBeatBox = new BeatBox(getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mBeatBox.release();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Nullable
