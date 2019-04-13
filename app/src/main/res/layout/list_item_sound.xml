@@ -14,11 +14,21 @@
 
     <!--使用绑定表达式: "@{}" -->
     <!--viewModel.title 等价于 viewModel.getTitle()-->
-    <Button
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:onClick="@{() -> viewModel.onButtonClicked()}"
-        android:text="@{`File:`+viewModel.title}"
-        tools:text="Sound name"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:onClick="@{() -> viewModel.onButtonClicked()}"
+            android:text="@{`File:`+viewModel.title}"
+            tools:text="Sound name" />
+
+
+    </FrameLayout>
+
 
 </layout>
