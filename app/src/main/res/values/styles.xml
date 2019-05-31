@@ -7,7 +7,7 @@
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here:可以覆盖父主题的任何属性，需要理解这些属性配置对应的功效 -->
         <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryDark">@color/dark_red</item>
+        <item name="colorPrimaryDark">@color/red</item>
         <item name="colorAccent">@color/gray</item>
         <item name="android:windowBackground">@color/soothing_blue</item>
 

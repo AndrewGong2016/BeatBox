@@ -101,6 +101,7 @@ public class BeatBoxFragment extends Fragment {
 
         }
 
+
         public void bind(Sound sound) {
             //使用ViewModel 来更新模型数据
             /**
@@ -132,7 +133,7 @@ public class BeatBoxFragment extends Fragment {
         public SoundHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             /**
-             * 同上，也使用DataBindingUtil 生成的Binding对象来构建视图所需的Holder
+             * 同上，也使用 DataBindingUtil 生成的Binding对象来构建视图所需的Holder
              */
             ListItemSoundBinding soundBinding = DataBindingUtil.inflate(inflater,R.layout.list_item_sound,viewGroup,false);
 

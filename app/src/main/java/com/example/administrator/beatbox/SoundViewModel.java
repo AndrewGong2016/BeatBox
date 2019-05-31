@@ -28,12 +28,19 @@ public class SoundViewModel extends BaseObservable {
         return mSound.getName();
     }
 
+    @Override
+    public void notifyChange() {
+        super.notifyChange();
+    }
+
     public void setSound(Sound sound) {
         mSound = sound;
         notifyChange();
 
     }
 
+    //ViewModel中直接与view 事件交互
+    //
     public void onButtonClicked() {
         mBeatBox.play(mSound);
     }

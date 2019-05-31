@@ -21,10 +21,8 @@ public class SoundViewModelTest {
 
         //使用mock 生成所需的虚拟对象，且该对象中所执行的方法和接受的参数将被 Mockito 跟踪
         mBeatBox = mock(BeatBox.class);
-
         mSound = new Sound("assetPath");
         mSubject = new SoundViewModel(mBeatBox);
-
         mSubject.setSound(mSound);
     }
 
@@ -38,10 +36,12 @@ public class SoundViewModelTest {
     public void callsBeatBoxPlayOnButtonClicked() {
         Sound sound = new Sound("df");
         System.out.println(sound.toString());
+        //precondition: 模拟点击事件
         mSubject.onButtonClicked();
-        //验证动作 mBeatBox.play(mSound) 被执行了
-//        verify(mBeatBox).play(mSound);
-        verify(mBeatBox).play(sound);
+        //验证动作 mBeatBox.play(mSound) 被执行了：
+        //mBeatBox.play(mSound)
+        verify(mBeatBox).play(mSound);
+
     }
 
 }
